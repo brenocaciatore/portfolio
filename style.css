@@ -1,0 +1,234 @@
+/* --- Reset e Variáveis (Seu código, com uma pequena correção) --- */
+* {
+  margin: 0; /* Corrigido de margin-left para margin: 0 */
+  padding: 0; 
+  box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primaria: #3F1952;
+  --secundaria: #201426;
+  --escuro: #15111A;
+  --mais-escuro: #0C080F;
+  --claro: #FBF7FF;
+  --vidro: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: var(--secundaria);
+  color: var(--claro);
+}
+
+/* --- Navegação (Seu código, com correções) --- */
+.navegacao {
+  position: fixed;
+  background: rgba(15, 23, 42, 0.8);
+  /* Adiciona um efeito de vidro */
+  backdrop-filter: blur(10px); 
+  width: 100%;
+  z-index: 100;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--vidro);
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 2rem; /* Adiciona espaço entre os links */
+  list-style: none;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: var(--claro);
+  font-weight: 550;
+  position: relative;
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+/* Corrigido: '::after' deve ser junto */
+.menu-link::after {
+  content: '';
+  height: 2px;
+  width: 0%; /* Começa com 0 para a animação funcionar */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, var(--primaria), var(--claro));
+  transition: width 0.4s ease; /* Transição suave */
+}
+
+/* Corrigido: 'width: 100%' precisava do % */
+.menu-link:hover::after {
+   width: 100%;
+}
+
+/* --- Layout Principal --- */
+.conteudo-principal {
+  /* Adiciona espaço no topo para o menu fixo não cobrir o conteúdo */
+  padding-top: 100px; 
+}
+
+.secao {
+  /* Define uma largura máxima e centraliza */
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Adiciona preenchimento (espaçamento interno) */
+  padding: 4rem 2rem; 
+}
+
+.secao-titulo {
+  font-size: 2.5rem;
+  color: var(--claro);
+  margin-bottom: 2rem;
+  text-align: center;
+  border-bottom: 2px solid var(--primaria);
+  padding-bottom: 0.5rem;
+  display: inline-block; /* Faz a borda ficar só no tamanho do texto */
+}
+
+/* Remove o estilo que estava quebrando o layout */
+/* .sobre-mim{
+  width: 1000px;
+  height: 1000px;
+}
+*/
+
+/* --- Seção de Projetos (Aqui entra o 'Box Shadow'!) --- */
+.projetos-caixa {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Faz os cards quebrarem a linha em telas menores */
+  gap: 2rem; /* Espaço entre os cards */
+}
+
+.projetos-cards {
+  background-color: var(--escuro);
+  border-radius: 8px;
+  overflow: hidden; /* Garante que a imagem com borda arredondada funcione */
+  width: 350px; /* Largura de cada card */
+  
+  /* --- O BOX-SHADOW (Bob Shadow 😉) --- */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  
+  /* Transição suave para o efeito de hover */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projetos-cards:hover {
+  /* Levanta o card */
+  transform: translateY(-8px);
+  
+  /* Aumenta a sombra para dar destaque */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+}
+
+.projeto-imagem {
+  width: 100%; /* Faz a imagem ocupar 100% da largura do card */
+  height: 200px; /* Altura fixa para todas as imagens */
+  object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+}
+
+.info-projeto,
+.descricao-projeto {
+  padding: 1rem 1.5rem;
+}
+
+.info-projeto {
+  font-size: 1.5rem;
+  color: var(--claro);
+}
+
+.descricao-projeto {
+  font-size: 1rem;
+  color: #c7c7c7; /* Um cinza claro para a descrição */
+  padding-top: 0;
+}
+
+
+/* --- Seção de Contato e Formulário --- */
+.contato-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.formulario-contato {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-basis: 500px; /* Largura base do formulário */
+}
+
+.campo-form,
+.text-form {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--primaria);
+  background-color: var(--escuro);
+  color: var(--claro);
+  font-size: 1rem;
+}
+
+.campo-form:focus,
+.text-form:focus {
+  outline: none;
+  border-color: var(--claro);
+  box-shadow: 0 0 10px var(--primaria);
+}
+
+.text-form {
+  min-height: 150px;
+  resize: vertical; /* Permite ao usuário redimensionar a altura */
+}
+
+.botao-form {
+  padding: 1rem;
+  background-color: var(--primaria);
+  color: var(--claro);
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botao-form:hover {
+  background-color: #5a2a75; /* Um tom mais claro da primária */
+}
+
+/* --- Redes Sociais --- */
+.redes-sociais {
+  text-align: center;
+}
+
+.secao-subtitulo {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #c7c7c7;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.social-icons img {
+  width: 40px; /* Tamanho dos ícones */
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2); /* Efeito de zoom no ícone */
+}
